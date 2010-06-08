@@ -2,4 +2,6 @@
 <resources>
     <string name="hello">Hello World, TaskIt!</string>
     <string name="app_name">TaskIt</string>
+<string name="button.add">+</string>
+<string name="button.remove">-</string>
 </resources>
