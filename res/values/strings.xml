@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Hello World, TaskIt!</string>
+    
     <string name="app_name">TaskIt</string>
 <string name="button.add">+</string>
 <string name="button.remove">-</string>
+<string name="textview.empty">No tasks found. Please create new one. :-)</string>
+
 </resources>
