@@ -67,4 +67,9 @@ public class Task {
 		this.finishedDate = finishedDate;
 	}
 
+	@Override
+	public String toString() {
+		return this.description;
+	}
+
 }

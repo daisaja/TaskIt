@@ -15,9 +15,8 @@ public class TaskService {
 
 	private final List<Task> tasks = new ArrayList<Task>();
 
-	public List<String> getAllTasks() {
-		// TODO fix it
-		return new ArrayList<String>(); // tasks;
+	public List<Task> getAllTasks() {
+		return tasks;
 	}
 
 	public void addTask(Task task) {

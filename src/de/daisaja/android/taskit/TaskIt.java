@@ -32,30 +32,52 @@ public class TaskIt extends ListActivity {
 		final Button plusButton = (Button) findViewById(R.id.buttonOk);
 		final EditText taskInput = (EditText) findViewById(R.id.taskInput);
 
-		setListAdapter(new ArrayAdapter<String>(this, R.layout.list_item,
-				taskService.getAllTasks()));
+		refreshListView();
 
 		listView.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				// When clicked, show a toast with the TextView text
-				Toast.makeText(getApplicationContext(),
-						((TextView) view).getText(), Toast.LENGTH_SHORT).show();
+				showToast(((TextView) view).getText());
 			}
 		});
 
 		plusButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				taskService.addTask(new Task(taskInput.getText().toString()));
-				Toast.makeText(getApplicationContext(),
-						taskInput.getText().toString(), Toast.LENGTH_SHORT)
-						.show();
-				setListAdapter(new ArrayAdapter<String>(TaskIt.this,
-						R.layout.list_item, taskService.getAllTasks()));
+				final String taskDescription = taskInput.getText().toString();
+				// Reset input field.
+				taskInput.setText("");
+
+				taskService.addTask(new Task(taskDescription));
+
+				showToast(taskDescription);
+
+				refreshListView();
 			}
 		});
 
 		registerForContextMenu(getListView());
+	}
+
+	/* -------------- GUI Helper methods ----------------------------------- */
+
+	/**
+	 * Calls {@link TaskService} to load all tasks to show and creates and sets
+	 * a new {@link ArrayAdapter}.
+	 */
+	private void refreshListView() {
+		setListAdapter(new ArrayAdapter<Task>(this, R.layout.list_item,
+				taskService.getAllTasks()));
+	}
+
+	/**
+	 * Creates and shows a short toast on current activity.
+	 * 
+	 * @param text
+	 *            to show in toast.
+	 */
+	private void showToast(final CharSequence text) {
+		Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT)
+				.show();
 	}
 }
