@@ -37,6 +37,7 @@ public class TaskIt extends ListActivity {
 		listView.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
+
 				showToast(((TextView) view).getText());
 			}
 		});
